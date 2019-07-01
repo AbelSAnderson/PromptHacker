@@ -1,0 +1,38 @@
+{
+  "Name": "",
+  "Security": "none",
+  "ConnectedComputers": [
+    "tutComp.json"
+  ],
+  "Files": {
+    "Type": "folder",
+    "Name": "Documents",
+    "Content": [
+      {
+        "Name" : "test.em",
+        "Type": "email",
+        "From": "From",
+        "To": "To",
+        "Sent": "Date Sent",
+        "Subject": "Subject",
+        "Message": "Message"
+      },
+      {
+        "Type": "text",
+        "Name": "Congrats.txt",
+        "Content": "Welcome to Prompt Hacker!\nYou successfully managed to navigate the file system.\nI expect great things from you in the future!"
+      },
+      {
+        "Type": "folder",
+        "Name": "random",
+        "Content": [
+          {
+            "Type": "text",
+            "Name": "test.txt",
+            "Content": "testing fileSys"
+          }
+        ]
+      }
+    ]
+  }
+}

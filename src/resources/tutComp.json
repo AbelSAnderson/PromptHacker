@@ -1,0 +1,27 @@
+{
+  "Name": "Marky Boy",
+  "Security": "none",
+  "ConnectedComputers": [
+    "startComp.json"
+  ],
+  "Files": {
+    "Type": "file",
+    "Name": "Documents",
+    "Content": [
+      {
+        "Name": "newPass.em",
+        "Type": "email",
+        "From": "dave.chitham@morph.net",
+        "To": "markyboy@morph.net",
+        "Sent": "June 16, 2019 (20 days ago)",
+        "Subject": "New Pass",
+        "Message": "Hey Mark\n..."
+      },
+      {
+        "Type": "text",
+        "Name": "Random.txt",
+        "Content": "Lorem Ipsum"
+      }
+    ]
+  }
+}

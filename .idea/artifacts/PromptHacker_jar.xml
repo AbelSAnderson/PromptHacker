@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PromptHacker:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PromptHacker_jar</output-path>
+    <root id="archive" name="PromptHacker.jar">
+      <element id="module-output" name="PromptHacker" />
+    </root>
+  </artifact>
+</component>
