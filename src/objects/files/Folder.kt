@@ -3,7 +3,7 @@ package objects.files
 import objects.File
 
 class Folder(fileName: String, var content: ArrayList<File>) : File(fileName) {
-    private var parentFolder: Folder? = null
+    var parentFolder: Folder? = null
 
     //Methods
     fun setParents(parentFolder: Folder?) {

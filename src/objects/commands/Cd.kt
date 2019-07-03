@@ -9,18 +9,21 @@ import java.util.*
 class Cd : Command("cd", "cd [folderName]: Navigate in to a specified folder.\ncd ../: Move back one folder") {
 
     override fun execute(gameState: GameState, userCommand: String): String {
-        val files = gameState.currentComputer.currentFolder.content
         val tokenizer = StringTokenizer(userCommand, "/")
+        var currentFolder = gameState.currentComputer.currentFolder
+        var token: String
 
-        for (file in files) {
-            if(file.fileName == userCommand) {
-                if(file !is Folder) {
-                    return Error().notAFolder(userCommand)
-                }
-                gameState.currentComputer.currentFolder = file
+        while (tokenizer.hasMoreTokens()) {
+            token = tokenizer.nextToken()
+
+            currentFolder = when (token) {
+                ".." -> currentFolder.parentFolder ?: return Error().invalidFile(userCommand)
+                else -> (currentFolder.findFile(token) ?: return Error().invalidFile(token)) as? Folder ?: return Error().notAFolder(token)
             }
         }
 
-        return Error().invalidFile(userCommand)
+        gameState.currentComputer.currentFolder = currentFolder
+
+        return ""
     }
 }

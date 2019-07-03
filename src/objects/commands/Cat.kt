@@ -11,20 +11,15 @@ class Cat : Command("cat", "Cat [filename]: Display the contents of a file.") {
 
     override fun execute(gameState: GameState, userCommand: String): String {
 
-        val files = gameState.currentComputer.currentFolder.content
+        val files = gameState.currentComputer.currentFolder
 
-        if(files.isEmpty()) return Error().invalidFile(userCommand, "\nFolder is empty")
+        if(files.content.isEmpty()) return Error().invalidFile(userCommand, "\nFolder is empty")
 
-        for (file in files) {
-            if (file.fileName.toLowerCase() == userCommand.toLowerCase()) {
-                when (file) {
-                    is Email -> return file.from + "\n" + file.to + "\n" + file.sent + "\n" + file.subject + "\n" + file.content
-                    is TextFile -> return file.content
-                    is Folder -> return Error().wrongUse("cat", "Cd")
-                }
-            }
+        return when (val file = files.findFile(userCommand)) {
+            is Email -> file.from + "\n" + file.to + "\n" + file.sent + "\n" + file.subject + "\n" + file.content
+            is TextFile -> file.content
+            is Folder -> Error().wrongUse("cat", "Cd")
+            else -> Error().invalidFile(userCommand)
         }
-
-        return Error().invalidFile(userCommand)
     }
 }
