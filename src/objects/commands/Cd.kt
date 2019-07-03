@@ -17,7 +17,7 @@ class Cd : Command("cd", "cd [folderName]: Navigate in to a specified folder.\nc
             token = tokenizer.nextToken()
 
             currentFolder = when (token) {
-                ".." -> currentFolder.parentFolder ?: return Error().invalidFile(userCommand)
+                ".." -> currentFolder.parentFolder ?: currentFolder
                 else -> (currentFolder.findFile(token) ?: return Error().invalidFile(token)) as? Folder ?: return Error().notAFolder(token)
             }
         }

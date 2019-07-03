@@ -10,7 +10,8 @@ class Help : Command("help", "help: Provides a list of all commands.\nhelp [comm
         val temp = StringBuilder()
 
         for (command in gameState.commands) {
-            temp.append(command.name).append("\n")
+            temp.append(command.name)
+            if (gameState.commands[gameState.commands.size - 1] != command)  temp.append("\n")
         }
 
         return temp.toString()
@@ -20,9 +21,7 @@ class Help : Command("help", "help: Provides a list of all commands.\nhelp [comm
         var temp :String = Error().unknownCommand(userCommand)
 
         for (command in gameState.commands) {
-            if (command.name == userCommand) {
-                temp = command.description
-            }
+            if (command.name == userCommand) temp = command.description
         }
 
         return temp
