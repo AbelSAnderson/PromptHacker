@@ -9,17 +9,7 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
 
     override fun execute(gameState: GameState): String {
 
-        val generatedIPs = Array(7) {""}
-        val output = StringBuilder("New IP addresses found:\n")
-
-        generatedIPs.indices.forEach { i ->
-            generatedIPs[i] = generateIP()
-            output.append("    ").append(generatedIPs[i]).append("\n")
-        }
-
-        gameState.connectedIPs = generatedIPs
-
-        return output.toString()
+        return ""
     }
 
     fun generateIP(): String {
