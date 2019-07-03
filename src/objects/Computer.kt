@@ -1,5 +1,5 @@
 package objects
 
-import objects.computerSystems.FileSystem
+import objects.files.Folder
 
-class Computer(var compName: String, var security: String, var ipAddress: String, var connectedComputers: Array<String?>, var files: FileSystem)
+class Computer(var compName: String, var security: String, var ipAddress: String, var connectedComputers: Array<String?>, var currentFolder: Folder)

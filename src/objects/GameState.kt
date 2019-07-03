@@ -3,7 +3,6 @@ package objects
 import objects.commands.*
 import objects.files.*
 
-import objects.computerSystems.FileSystem
 import objects.File as ZFile
 
 import org.apache.commons.io.FileUtils
@@ -68,8 +67,8 @@ class GameState {
         //files
         val folder = computer.getJSONObject("Files")
 
-        val files = FileSystem(createFolder(folder))
-        files.files.setParents(null)
+        val files = createFolder(folder)
+        files.setParents(null)
 
         //Return Completed Computer
         return Computer(compName, security, ipAddress, connectedComputers, files)
@@ -97,18 +96,18 @@ class GameState {
         val folderName = folder.getString("Name")
 
         val folderContentObjects = folder.getJSONArray("Content")
-        val folderContents = arrayOfNulls<ZFile>(folderContentObjects.length())
+        val tempFolder: ArrayList<ZFile> = ArrayList(folderContentObjects.length())
 
         for (i in 0 until folderContentObjects.length()) {
             val file = folderContentObjects.getJSONObject(i)
 
             when (file.getString("Type")) {
-                "text" -> folderContents[i] = createFile(file)
-                "email" -> folderContents[i] = createEmail(file)
-                "folder" -> folderContents[i] = createFolder(file)
+                "text" -> tempFolder.add(createFile(file))
+                "email" -> tempFolder.add(createEmail(file))
+                "folder" -> tempFolder.add(createFolder(file))
             }
         }
 
-        return Folder(folderName, folderContents)
+        return Folder(folderName, tempFolder)
     }
 }

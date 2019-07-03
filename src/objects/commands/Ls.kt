@@ -9,12 +9,12 @@ class Ls : Command("ls", "ls: Lists files on the Computer you're currently using
 
         val output = StringBuilder()
 
-        val files = gameState.currentComputer.files.currentFolder
+        val files = gameState.currentComputer.currentFolder
 
         output.append(files.fileName).append("/\n")
 
         for (file in files.content) {
-            output.append("    ").append(file?.fileName).append("\n")
+            output.append("    ").append(file.fileName).append("\n")
         }
 
         return output.toString()

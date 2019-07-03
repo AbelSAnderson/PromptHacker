@@ -19,4 +19,8 @@ class Error {
     fun unknownCommand(userCommand: String): String {
         return "$userCommand not found.\nType 'help' for available commands."
     }
+
+    fun notAFolder(file: String): String {
+        return "$file is not a folder."
+    }
 }

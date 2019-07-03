@@ -23,7 +23,7 @@ object Game {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        //Variables
+        //Scanner
         val input = Scanner(System.`in`)
 
         //Game Start
@@ -31,6 +31,8 @@ object Game {
             print(gameState.currentComputer.ipAddress + "> ")
             println(commandHandler(input.nextLine()) + "\n")
         }
+
+        input.close()
     }
 
     //Searches commands for user entered Command
