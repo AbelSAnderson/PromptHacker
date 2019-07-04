@@ -1,8 +1,8 @@
 {
-  "Name": "",
+  "Name": "PortHackExe",
   "Security": "none",
   "ConnectedComputers": [
-    "tutComp.json"
+    "MarkyBoy"
   ],
   "Files": {
     "Type": "folder",

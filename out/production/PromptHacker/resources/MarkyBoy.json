@@ -1,8 +1,8 @@
 {
-  "Name": "Marky Boy",
+  "Name": "MarkyBoy",
   "Security": "none",
   "ConnectedComputers": [
-    "startComp.json"
+    "PortHackExe"
   ],
   "Files": {
     "Type": "file",

@@ -23,4 +23,8 @@ class Error {
     fun notAFolder(file: String): String {
         return "$file is not a folder."
     }
+
+    fun noComputers(): String {
+        return "No computers found."
+    }
 }

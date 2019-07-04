@@ -17,15 +17,11 @@ import java.net.URL
 class GameState {
 
     var isExit: Boolean = false
-    var commands: Array<Command>
+    var commands: Array<Command> = arrayOf(Help(), Scan(), Ls(), Cat(), Cd(), Exit())
+    var activeComputers: ArrayList<Computer> = ArrayList()
     var currentComputer: Computer
-    var connectedIPs: Array<String>
 
     init {
-        isExit = false
-        commands = arrayOf(Help(), Scan(), Ls(), Cat(), Cd(), Exit())
-        connectedIPs = arrayOf()
-
         //Get local IP Address
         val ipAddress: String = try {
             BufferedReader(InputStreamReader(URL("http://bot.whatismyipaddress.com").openStream())).readLine().trim { it <= ' ' }
@@ -33,19 +29,17 @@ class GameState {
             Scan().generateIP()
         }
 
-        currentComputer = createComputer(File("src/resources/startComp.json"), ipAddress)
+        currentComputer = createComputer(File("src/resources/PortHackExe.json"), ipAddress)
+        activeComputers.add(currentComputer)
     }
 
     //Methods
-    private fun createComputer(jsonFile: File, ipAddress: String): Computer {
+    fun createComputer(jsonFile: File, ipAddress: String): Computer {
 
-        var content: String
-
-        try {
-            content = FileUtils.readFileToString(jsonFile, "utf-8")
+        val content: String = try {
+            FileUtils.readFileToString(jsonFile, "utf-8")
         } catch (e: IOException) {
-            content = ""
-            e.printStackTrace()
+            ""
         }
 
         val computer = JSONObject(content)
@@ -58,20 +52,18 @@ class GameState {
 
         //Connected Computers
         val connectedComps = computer.getJSONArray("ConnectedComputers")
-        val connectedComputers = arrayOfNulls<String>(connectedComps.length())
+        val connectedComputersFiles = arrayOfNulls<String>(connectedComps.length())
 
         for (i in 0 until connectedComps.length()) {
-            connectedComputers[i] = connectedComps.getString(i)
+            connectedComputersFiles[i] = connectedComps.getString(i)
         }
 
-        //files
-        val folder = computer.getJSONObject("Files")
-
-        val files = createFolder(folder)
+        //Files
+        val files = createFolder(computer.getJSONObject("Files"))
         files.setParents(null)
 
-        //Return Completed Computer
-        return Computer(compName, security, ipAddress, connectedComputers, files)
+        //Create & Return Completed Computer
+        return Computer(compName, security, ipAddress, connectedComputersFiles, files)
     }
 
     private fun createEmail(email: JSONObject): ZFile {
