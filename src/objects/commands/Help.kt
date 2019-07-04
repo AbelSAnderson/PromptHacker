@@ -10,8 +10,8 @@ class Help : Command("help", "help: Provides a list of all commands.\nhelp [comm
         val temp = StringBuilder()
 
         for (command in gameState.commands) {
+            if(temp.isNotEmpty())temp.append("\n")
             temp.append(command.name)
-            if (gameState.commands[gameState.commands.size - 1] != command)  temp.append("\n")
         }
 
         return temp.toString()

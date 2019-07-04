@@ -17,8 +17,11 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
 
         for(compName in gameState.currentComputer.connectedComputers) {
             for(comp in gameState.activeComputers) {
-                if(compName == comp.compName) break
-                else if (comp == gameState.activeComputers[gameState.activeComputers.lastIndex]) {
+                if(compName == comp.compName) {
+                    if(temp.isEmpty()) temp.append("Ip(s) found:")
+                    temp.append("\n").append("    ").append(comp.ipAddress)
+                    break
+                } else if (comp == gameState.activeComputers[gameState.activeComputers.lastIndex]) {
                     if(temp.isEmpty()) temp.append("Ip(s) found:")
                     temp.append("\n")
 
