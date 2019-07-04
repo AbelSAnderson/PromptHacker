@@ -53,6 +53,6 @@ object Game {
             }
         }
 
-        return Error().unknownCommand(userCommand)
+        return Error().commandNotFound(userCommand)
     }
 }

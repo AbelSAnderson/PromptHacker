@@ -18,7 +18,7 @@ class Cd : Command("cd", "cd [folderName]: Navigate in to a specified folder.\nc
 
             currentFolder = when (token) {
                 ".." -> currentFolder.parentFolder ?: currentFolder
-                else -> (currentFolder.findFile(token) ?: return Error().invalidFile(token)) as? Folder ?: return Error().notAFolder(token)
+                else -> (currentFolder.findFile(token) ?: return Error().objectNotFound(token)) as? Folder ?: return Error().notAFolder(token)
             }
         }
 

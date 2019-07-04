@@ -12,11 +12,11 @@ class Error {
         return "Invalid use of '$oldCommand', try using '$newCommand' instead."
     }
 
-    fun invalidFile(file: String, reason: String = ""): String {
-        return "'$file' was not found.$reason"
+    fun objectNotFound(objectName: String, reason: String = ""): String {
+        return "'$objectName' was not found.$reason"
     }
 
-    fun unknownCommand(userCommand: String): String {
+    fun commandNotFound(userCommand: String): String {
         return "$userCommand not found.\nType 'help' for available commands."
     }
 

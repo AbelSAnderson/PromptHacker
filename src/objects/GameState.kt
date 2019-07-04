@@ -17,7 +17,7 @@ import java.net.URL
 class GameState {
 
     var isExit: Boolean = false
-    var commands: Array<Command> = arrayOf(Help(), Scan(), Ls(), Cat(), Cd(), Exit())
+    var commands: Array<Command> = arrayOf(Help(), Scan(), Connect(), Ls(), Cat(), Cd(), Exit())
     var activeComputers: ArrayList<Computer> = ArrayList()
     var currentComputer: Computer
 

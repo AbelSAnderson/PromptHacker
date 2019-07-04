@@ -18,7 +18,7 @@ class Help : Command("help", "help: Provides a list of all commands.\nhelp [comm
     }
 
     override fun execute(gameState: GameState, userCommand: String): String {
-        var temp :String = Error().unknownCommand(userCommand)
+        var temp :String = Error().commandNotFound(userCommand)
 
         for (command in gameState.commands) {
             if (command.name == userCommand) temp = command.description
