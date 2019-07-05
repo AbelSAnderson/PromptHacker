@@ -39,16 +39,19 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
         return temp.toString()
     }
 
+    //This can create duplicate Ips... not going to worry about that right now.
     fun generateIP(): String {
-
         val r = Random()
+        val list = listOf(3, 2, 3, 1)
 
         var newIP = ""
+        var temp: String
 
-        newIP += (r.nextInt(899) + 100).toString() + "."
-        newIP += (r.nextInt(89) + 10).toString() + "."
-        newIP += (r.nextInt(899) + 100).toString() + "."
-        newIP += r.nextInt(9)
+        for(num in list) {
+            temp = (r.nextInt(("".padStart(num, '9')).toInt()) + 1).toString()
+            newIP += temp.padStart(num, '0')
+            if(num != 1) newIP += '.'
+        }
 
         return newIP
     }
