@@ -46,7 +46,7 @@ class GameState {
 
         //Grab information from Json File
         val compName = computer.getString("Name")
-        val security = computer.getString("Security")
+        val security = createSecurity(computer.getJSONObject("Security"))
 
         //Grab and convert JSON arrays
 
@@ -101,5 +101,12 @@ class GameState {
         }
 
         return Folder(folderName, tempFolder)
+    }
+
+    private fun createSecurity(info: JSONObject): SecuritySys {
+        val password = info.getString("Password")
+        val hint = info.getString("Hint")
+
+        return SecuritySys(password, hint)
     }
 }
