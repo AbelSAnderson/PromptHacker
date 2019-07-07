@@ -5,10 +5,10 @@ abstract class Command
 
     //Methods
     open fun execute(gameState: GameState): String {
-        return "Command under development."
+        return Error().invalidUse(this.name)
     }
 
     open fun execute(gameState: GameState, userCommand: String): String {
-        return Error().invalidUse(this.name, userCommand)
+        return Error().invalidUse(this.name, " $userCommand")
     }
 }

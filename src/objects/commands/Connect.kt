@@ -13,7 +13,7 @@ class Connect : Command("connect", "connect [IpAddress]: Connect to a different 
             if (computer.ipAddress == userCommand) {
                 gameState.currentComputer = computer
                 if(gameState.currentComputer.security.password.isNotEmpty())
-                    gameState.currentComputer.security.locked = true
+                    gameState.currentComputer.security.isLocked = true
                 check = true
                 break
             }

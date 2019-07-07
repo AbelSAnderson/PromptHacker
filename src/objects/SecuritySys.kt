@@ -1,3 +1,3 @@
 package objects
 
-class SecuritySys (var password: String, var hint: String, var locked: Boolean = false)
+class SecuritySys (var password: String, var hint: String, var isLocked: Boolean = false)

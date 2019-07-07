@@ -42,7 +42,7 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
     //This can create duplicate Ips... not going to worry about that right now.
     fun generateIP(): String {
         val r = Random()
-        val list = listOf(3, 2, 3, 1)
+        val list = listOf(3, 3, 3, 1)
 
         var newIP = ""
         var temp: String

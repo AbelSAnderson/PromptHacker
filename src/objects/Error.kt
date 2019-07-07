@@ -4,8 +4,8 @@ package objects
 class Error {
 
     //Methods
-    fun invalidUse(commandName: String, subCommand: String): String {
-        return "'$commandName $subCommand' is not a valid use of '$commandName'."
+    fun invalidUse(commandName: String, subCommand: String = ""): String {
+        return "'$commandName$subCommand' is not a valid use of '$commandName'."
     }
 
     fun wrongUse(oldCommand: String, newCommand: String): String {
@@ -22,6 +22,14 @@ class Error {
 
     fun notAFolder(file: String): String {
         return "$file is not a folder."
+    }
+
+    fun invalidPass(pass: String): String {
+        return "$pass is not the correct password."
+    }
+
+    fun alreadyLoggedIn(): String {
+        return "You are already logged in."
     }
 
     fun notLoggedIn(): String {

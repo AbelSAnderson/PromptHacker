@@ -17,12 +17,11 @@ import java.net.URL
 class GameState {
 
     var isExit: Boolean = false
-    var commands: Array<Command> = arrayOf(Help(), Scan(), Connect(), Ls(), Cat(), Cd(), Exit())
+    val commands: List<Command> = listOf(Help(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Exit())
     var activeComputers: ArrayList<Computer> = ArrayList()
     var currentComputer: Computer
 
     init {
-
 
         //Get local IP Address
         val ipAddress: String = try {
