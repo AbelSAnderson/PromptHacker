@@ -7,7 +7,7 @@ import objects.Command
 import objects.Error
 import objects.GameState
 
-class Cat : Command("cat", "Cat [filename]: Display the contents of a file.") {
+class Cat : Command("cat", "Cat [filename]: Display the contents of a file.", true) {
 
     override fun execute(gameState: GameState, userCommand: String): String {
 

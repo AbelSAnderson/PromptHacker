@@ -1,8 +1,8 @@
 {
   "Name": "MarkyBoy",
   "Security": {
-    "Password" : "",
-    "Hint" : ""
+    "Password" : "Test",
+    "Hint" : "TTTTTTTest"
   },
   "ConnectedComputers": [
     "PortHackExe"

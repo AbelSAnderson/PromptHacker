@@ -8,7 +8,7 @@ import java.lang.StringBuilder
 
 import java.util.Random
 
-class Scan : Command("scan", "scan: Reveals IP addresses currently connected to your network.") {
+class Scan : Command("scan", "scan: Reveals IP addresses currently connected to your network.", false) {
 
     override fun execute(gameState: GameState): String {
 

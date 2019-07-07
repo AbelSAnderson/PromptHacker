@@ -4,7 +4,7 @@ import objects.Command
 import objects.GameState
 import objects.files.Folder
 
-class Ls : Command("ls", "ls: Lists files on the Computer you're currently using.") {
+class Ls : Command("ls", "ls: Lists files on the Computer you're currently using.", true) {
 
     override fun execute(gameState: GameState): String {
 

@@ -44,7 +44,9 @@ object Game {
         if (tokenizer.countTokens() < 2) {
             for (command in gameState.commands) {
                 if (userCommand.toLowerCase().trim { it <= ' ' } == command.name) {
-                    return if (!tokenizer.hasMoreTokens()) {
+                    return if(gameState.currentComputer.security.locked && command.isLocked) {
+                        Error().notLoggedIn()
+                    } else if (!tokenizer.hasMoreTokens()) {
                         command.execute(gameState)
                     } else {
                         command.execute(gameState, tokenizer.nextToken().trim { it <= ' ' })

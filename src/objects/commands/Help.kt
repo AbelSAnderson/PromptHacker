@@ -3,7 +3,7 @@ package objects.commands
 import objects.Command
 import objects.GameState
 
-class Help : Command("help", "help: Provides a list of all commands.") {
+class Help : Command("help", "help: Provides a list of all commands.", false) {
 
     override fun execute(gameState: GameState): String {
         val temp = StringBuilder()

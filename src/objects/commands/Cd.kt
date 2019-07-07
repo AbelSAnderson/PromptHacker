@@ -6,7 +6,7 @@ import objects.GameState
 import objects.files.Folder
 import java.util.*
 
-class Cd : Command("cd", "cd [folderName]: Navigate to a specified folder.\ncd ../: Move back one folder") {
+class Cd : Command("cd", "cd [folderName]: Navigate to a specified folder.\ncd ../: Move back one folder", true) {
 
     override fun execute(gameState: GameState, userCommand: String): String {
         val tokenizer = StringTokenizer(userCommand, "/")

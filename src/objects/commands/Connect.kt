@@ -4,7 +4,7 @@ import objects.Command
 import objects.Error
 import objects.GameState
 
-class Connect : Command("connect", "connect [IpAddress]: Connect to a different computer.") {
+class Connect : Command("connect", "connect [IpAddress]: Connect to a different computer.", false) {
     override fun execute(gameState: GameState, userCommand: String): String {
 
         var check = false

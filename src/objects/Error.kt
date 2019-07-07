@@ -24,6 +24,10 @@ class Error {
         return "$file is not a folder."
     }
 
+    fun notLoggedIn(): String {
+        return "Log into computer to access that command."
+    }
+
     fun noComputers(): String {
         return "No computers found."
     }

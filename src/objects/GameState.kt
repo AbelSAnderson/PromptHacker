@@ -22,6 +22,8 @@ class GameState {
     var currentComputer: Computer
 
     init {
+
+
         //Get local IP Address
         val ipAddress: String = try {
             BufferedReader(InputStreamReader(URL("http://bot.whatismyipaddress.com").openStream())).readLine().trim { it <= ' ' }
