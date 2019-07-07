@@ -17,15 +17,15 @@ class Error {
     }
 
     fun commandNotFound(userCommand: String): String {
-        return "$userCommand not found.\nType 'help' for available commands."
+        return "'$userCommand' not found.\nType 'help' for available commands."
     }
 
     fun notAFolder(file: String): String {
-        return "$file is not a folder."
+        return "'$file' is not a folder."
     }
 
     fun invalidPass(pass: String): String {
-        return "$pass is not the correct password."
+        return "'$pass' is not the correct password."
     }
 
     fun alreadyLoggedIn(): String {

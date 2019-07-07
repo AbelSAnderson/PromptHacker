@@ -4,7 +4,7 @@ import objects.Command
 import objects.Error
 import objects.GameState
 
-class Login : Command("login", "Login [password]: Login to another computer",  false){
+class Login : Command("login", "login [password]: Login to another computer",  false){
 
     override fun execute(gameState: GameState, userCommand: String): String {
 
