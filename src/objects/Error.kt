@@ -28,7 +28,7 @@ class Error {
         return "'$pass' is not the correct password."
     }
 
-    fun alreadyLoggedIn(): String {
+    fun loggedIn(): String {
         return "You are already logged in."
     }
 

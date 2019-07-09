@@ -14,9 +14,16 @@ class Login : Command("login", "login [password]: Login to another computer",  f
             security.isLocked = false
             "You have successfully logged in to ${gameState.currentComputer.ipAddress}"
         } else if(!security.isLocked) {
-            Error().alreadyLoggedIn()
+            Error().loggedIn()
         } else {
-            Error().invalidPass(userCommand)
+            val hint = if(security.hintCount == 0) {
+                "\nPassword Hint: " + security.hint
+            } else {
+                security.hintCount--
+                ""
+            }
+
+            Error().invalidPass(userCommand) + hint
         }
     }
 }
