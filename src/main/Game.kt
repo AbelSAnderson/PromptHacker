@@ -1,6 +1,5 @@
 package main
 
-import objects.Error
 import objects.GameState
 
 import java.util.Scanner
@@ -45,7 +44,7 @@ object Game {
             for (command in gameState.commands) {
                 if (userCommand.toLowerCase().trim { it <= ' ' } == command.name) {
                     return if(gameState.currentComputer.security.isLocked && command.isLocked) {
-                        Error().notLoggedIn()
+                        gameState.error.notLoggedIn()
                     } else if (!tokenizer.hasMoreTokens()) {
                         command.execute(gameState)
                     } else {
@@ -55,6 +54,6 @@ object Game {
             }
         }
 
-        return Error().commandNotFound(userCommand)
+        return gameState.error.notFound(userCommand, gameState.error.defaultMessage)
     }
 }

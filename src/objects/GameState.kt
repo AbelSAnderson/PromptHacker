@@ -3,21 +3,21 @@ package objects
 import objects.commands.*
 import objects.files.*
 
-import objects.File as ZFile
-
 import org.apache.commons.io.FileUtils
 import org.json.JSONObject
 
 import java.io.BufferedReader
-import java.io.File
+import java.io.File as ZFile
 import java.io.IOException
 import java.io.InputStreamReader
 import java.net.URL
 
 class GameState {
 
+    val commands: List<Command> = listOf(Help(), View(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Exit())
+    val error = Error()
+
     var isExit: Boolean = false
-    val commands: List<Command> = listOf(Help(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Exit())
     var activeComputers: ArrayList<Computer> = ArrayList()
     var currentComputer: Computer
 
@@ -30,12 +30,12 @@ class GameState {
             Scan().generateIP()
         }
 
-        currentComputer = createComputer(File("src/resources/PortHackExe.json"), ipAddress)
+        currentComputer = createComputer(ZFile("src/resources/PortHackExe.json"), ipAddress)
         activeComputers.add(currentComputer)
     }
 
     //Methods
-    fun createComputer(jsonFile: File, ipAddress: String): Computer {
+    fun createComputer(jsonFile: ZFile, ipAddress: String): Computer {
 
         val content: String = try {
             FileUtils.readFileToString(jsonFile, "utf-8")
@@ -67,7 +67,7 @@ class GameState {
         return Computer(compName, security, ipAddress, connectedComputersFiles, files)
     }
 
-    private fun createEmail(email: JSONObject): ZFile {
+    private fun createEmail(email: JSONObject): File {
         val fileName = email.getString("Name")
         val from = email.getString("From")
         val to = email.getString("To")
@@ -78,7 +78,7 @@ class GameState {
         return Email(fileName, from, to, sent, subject, message)
     }
 
-    private fun createFile(file: JSONObject): ZFile {
+    private fun createFile(file: JSONObject): File {
         val fileName = file.getString("Name")
         val content = file.getString("Content")
 
@@ -89,7 +89,7 @@ class GameState {
         val folderName = folder.getString("Name")
 
         val folderContentObjects = folder.getJSONArray("Content")
-        val tempFolder: ArrayList<ZFile> = ArrayList(folderContentObjects.length())
+        val tempFolder: ArrayList<File> = ArrayList(folderContentObjects.length())
 
         for (i in 0 until folderContentObjects.length()) {
             val file = folderContentObjects.getJSONObject(i)
@@ -107,7 +107,8 @@ class GameState {
     private fun createSecurity(info: JSONObject): SecuritySys {
         val password = info.getString("Password")
         val hint = info.getString("Hint")
+        val unlocked = password.isNotEmpty()
 
-        return SecuritySys(password, hint)
+        return SecuritySys(password, hint, unlocked)
     }
 }

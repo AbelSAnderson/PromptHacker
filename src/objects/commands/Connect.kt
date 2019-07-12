@@ -1,7 +1,6 @@
 package objects.commands
 
 import objects.Command
-import objects.Error
 import objects.GameState
 
 class Connect : Command("connect", "connect [IpAddress]: Connect to a different computer.", false) {
@@ -12,14 +11,12 @@ class Connect : Command("connect", "connect [IpAddress]: Connect to a different 
         for (computer in gameState.activeComputers) {
             if (computer.ipAddress == userCommand) {
                 gameState.currentComputer = computer
-                if(gameState.currentComputer.security.password.isNotEmpty())
-                    gameState.currentComputer.security.isLocked = true
                 check = true
                 break
             }
         }
 
         return if (check) "Connected to $userCommand."
-        else Error().objectNotFound(userCommand)
+        else gameState.error.notFound(userCommand)
     }
 }

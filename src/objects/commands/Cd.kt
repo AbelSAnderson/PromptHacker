@@ -1,7 +1,6 @@
 package objects.commands
 
 import objects.Command
-import objects.Error
 import objects.GameState
 import objects.files.Folder
 import java.util.*
@@ -18,7 +17,7 @@ class Cd : Command("cd", "cd [folderName]: Navigate to a specified folder.\ncd .
 
             currentFolder = when (token) {
                 ".." -> currentFolder.parentFolder ?: currentFolder
-                else -> (currentFolder.findFile(token) ?: return Error().objectNotFound(token)) as? Folder ?: return Error().notAFolder(token)
+                else -> (currentFolder.findFile(token) ?: return gameState.error.notFound(token)) as? Folder ?: return gameState.error.isNot(token, "a folder")
             }
         }
 

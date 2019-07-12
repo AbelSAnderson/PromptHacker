@@ -3,29 +3,33 @@ package objects
 //Empty Constructor
 class Error {
 
+    val defaultMessage = "Type 'help' for available commands."
+
     //Methods
     fun invalidUse(commandName: String, subCommand: String = ""): String {
-        return "'$commandName$subCommand' is not a valid use of '$commandName'."
+        var message = if(subCommand.isEmpty()) "'$commandName'"
+        else "'$commandName $subCommand'"
+
+        message += " is not a valid use of '$commandName'."
+
+        return message
     }
 
-    fun wrongUse(oldCommand: String, newCommand: String): String {
-        return "Invalid use of '$oldCommand', try using '$newCommand' instead."
+    fun notFound(objectName: String, reason: String = "", quotes: Boolean = true): String {
+        var message = if(quotes) "'$objectName'"
+        else objectName
+
+        message += " not found."
+
+        if(reason.isNotEmpty()) message += "\n$reason"
+
+        return message
+
+        //return "'$objectName' not found.$reason"
     }
 
-    fun objectNotFound(objectName: String, reason: String = ""): String {
-        return "'$objectName' was not found.$reason"
-    }
-
-    fun commandNotFound(userCommand: String): String {
-        return "'$userCommand' not found.\nType 'help' for available commands."
-    }
-
-    fun notAFolder(file: String): String {
-        return "'$file' is not a folder."
-    }
-
-    fun invalidPass(pass: String): String {
-        return "'$pass' is not the correct password."
+    fun isNot(name: String, message: String): String {
+        return "'$name' is not $message."
     }
 
     fun loggedIn(): String {

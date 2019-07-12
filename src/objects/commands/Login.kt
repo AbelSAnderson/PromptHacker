@@ -1,7 +1,6 @@
 package objects.commands
 
 import objects.Command
-import objects.Error
 import objects.GameState
 
 class Login : Command("login", "login [password]: Login to another computer",  false){
@@ -14,7 +13,7 @@ class Login : Command("login", "login [password]: Login to another computer",  f
             security.isLocked = false
             "You have successfully logged in to ${gameState.currentComputer.ipAddress}"
         } else if(!security.isLocked) {
-            Error().loggedIn()
+            gameState.error.loggedIn()
         } else {
             val hint = if(security.hintCount == 0) {
                 "\nPassword Hint: " + security.hint
@@ -23,7 +22,7 @@ class Login : Command("login", "login [password]: Login to another computer",  f
                 ""
             }
 
-            Error().invalidPass(userCommand) + hint
+            gameState.error.isNot(userCommand, "the correct password") + hint
         }
     }
 }

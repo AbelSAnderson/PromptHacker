@@ -2,7 +2,6 @@ package objects.commands
 
 import objects.Command
 import objects.GameState
-import objects.Error
 import java.io.File
 import java.lang.StringBuilder
 
@@ -34,7 +33,7 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
             }
         }
 
-        if(temp.isEmpty()) temp.append(Error().noComputers())
+        if(temp.isEmpty()) temp.append(gameState.error.noComputers())
 
         return temp.toString()
     }
