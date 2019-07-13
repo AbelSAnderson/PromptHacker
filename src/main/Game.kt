@@ -40,16 +40,16 @@ object Game {
         val tokenizer = StringTokenizer(userCommands)
         val userCommand = tokenizer.nextToken()
 
-        if (tokenizer.countTokens() < 2) {
-            for (command in gameState.commands) {
-                if (userCommand.toLowerCase().trim { it <= ' ' } == command.name) {
-                    return if(gameState.currentComputer.security.isLocked && command.isLocked) {
-                        gameState.error.notLoggedIn()
-                    } else if (!tokenizer.hasMoreTokens()) {
-                        command.execute(gameState)
-                    } else {
-                        command.execute(gameState, tokenizer.nextToken().trim { it <= ' ' })
-                    }
+        for (command in gameState.commands) {
+            if (userCommand.toLowerCase().trim { it <= ' ' } == command.name) {
+                return if (gameState.currentComputer.security.isLocked && command.isLocked) {
+                    gameState.error.notLoggedIn()
+                } else if (!tokenizer.hasMoreTokens()) {
+                    command.execute(gameState)
+                } else if (tokenizer.countTokens() < 2) {
+                    command.execute(gameState, tokenizer.nextToken().trim { it <= ' ' })
+                } else {
+                    command.execute(gameState, tokenizer)
                 }
             }
         }

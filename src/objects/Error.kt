@@ -1,5 +1,7 @@
 package objects
 
+import java.util.*
+
 //Empty Constructor
 class Error {
 
@@ -15,6 +17,14 @@ class Error {
         return message
     }
 
+    fun invalidUse(commandName: String, subCommands: StringTokenizer): String {
+
+        var temp = ""
+        while(subCommands.hasMoreTokens()) temp += " " + subCommands.nextToken()
+
+        return "'$commandName ${temp.trim()}' is not a valid use of '$commandName'."
+    }
+
     fun notFound(objectName: String, reason: String = "", quotes: Boolean = true): String {
         var message = if(quotes) "'$objectName'"
         else objectName
@@ -24,8 +34,6 @@ class Error {
         if(reason.isNotEmpty()) message += "\n$reason"
 
         return message
-
-        //return "'$objectName' not found.$reason"
     }
 
     fun isNot(name: String, message: String): String {

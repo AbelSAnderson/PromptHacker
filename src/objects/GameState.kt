@@ -14,7 +14,7 @@ import java.net.URL
 
 class GameState {
 
-    val commands: List<Command> = listOf(Help(), View(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Exit())
+    val commands: List<Command> = listOf(Help(), View(), Set(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Exit())
     val error = Error()
 
     var isExit: Boolean = false

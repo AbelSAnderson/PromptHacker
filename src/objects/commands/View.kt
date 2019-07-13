@@ -14,7 +14,7 @@ class View: Command("view", "view ip/name/pass/hint: View a piece of information
             "pass" -> messageCreator("Password", gameState.currentComputer.security.password)
             "hint" -> messageCreator("Password Hint", gameState.currentComputer.security.hint)
             else -> gameState.error.notFound(userCommand)
-        }
+    }
     }
 
     private fun messageCreator(message: String, variable: String): String {
