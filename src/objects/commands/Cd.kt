@@ -23,6 +23,6 @@ class Cd : Command("cd", "cd [folderName]: Navigate to a specified folder.\ncd .
 
         gameState.currentComputer.currentFolder = currentFolder
 
-        return ""
+        return Ls().execute(gameState)
     }
 }
