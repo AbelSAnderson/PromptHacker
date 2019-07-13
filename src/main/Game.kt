@@ -47,7 +47,7 @@ object Game {
                 } else if (!tokenizer.hasMoreTokens()) {
                     command.execute(gameState)
                 } else if (tokenizer.countTokens() < 2) {
-                    command.execute(gameState, tokenizer.nextToken().trim { it <= ' ' })
+                    command.execute(gameState, tokenizer.nextToken().trim())
                 } else {
                     command.execute(gameState, tokenizer)
                 }
