@@ -1,6 +1,7 @@
 package objects.files
 
 import objects.File
+import kotlin.collections.ArrayList
 
 class Folder(fileName: String, var content: ArrayList<File>) : File(fileName) {
     var parentFolder: Folder? = null
@@ -8,17 +9,11 @@ class Folder(fileName: String, var content: ArrayList<File>) : File(fileName) {
     //Methods
     fun setParents(parentFolder: Folder?) {
         this.parentFolder = parentFolder
-        for (file in content) {
-            if (file is Folder) file.setParents(this)
-        }
+
+        content.forEach {if (it is Folder) it.setParents(this)}
     }
 
     fun findFile(fileName: String): File? {
-        for (file in this.content) {
-            if(file.fileName == fileName) {
-                return file
-            }
-        }
-        return null
+        return content.find { it.fileName == fileName }
     }
 }

@@ -26,7 +26,7 @@ class Set : Command("set", "set name/pass/hint [newValue]: Sets the desired valu
                else -> gameState.error.notFound(valueName)
             }
         } else {
-            return gameState.error.invalidUse(this.name, userCommands)
+            return gameState.error.invalidUse(name, userCommands)
         }
     }
 }

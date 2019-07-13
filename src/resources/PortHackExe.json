@@ -22,7 +22,7 @@
       },
       {
         "Type": "text",
-        "Name": "Congrats.txt",
+        "Name": "congrats.txt",
         "Content": "Welcome to Prompt Hacker!\nYou successfully managed to navigate the file system.\nI expect great things from you in the future!"
       },
       {

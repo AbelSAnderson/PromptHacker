@@ -14,7 +14,7 @@ import java.net.URL
 
 class GameState {
 
-    val commands: List<Command> = listOf(Help(), View(), Set(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Rm(), Exit())
+    val commands: List<Command> = listOf(Help(), View(), Set(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Rm(), Mv(), Exit())
     val error = Error()
 
     var isExit: Boolean = false
@@ -25,7 +25,7 @@ class GameState {
 
         //Get local IP Address
         val ipAddress: String = try {
-            BufferedReader(InputStreamReader(URL("http://bot.whatismyipaddress.com").openStream())).readLine().trim { it <= ' ' }
+            BufferedReader(InputStreamReader(URL("http://bot.whatismyipaddress.com").openStream())).readLine().trim()
         } catch (e: Exception) {
             Scan().generateIP()
         }
