@@ -24,7 +24,7 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
                     if(temp.isEmpty()) temp.append("Ip(s) found:")
                     temp.append("\n")
 
-                    ip = generateIP()
+                    ip = generateIP(gameState)
                     gameState.activeComputers.add(gameState.createComputer(File("src/resources/$compName.json"), ip))
 
                     temp.append("    ").append(ip)
@@ -39,7 +39,7 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
     }
 
     //This can create duplicate Ips... not going to worry about that right now.
-    fun generateIP(): String {
+    fun generateIP(gameState: GameState): String {
         val r = Random()
         val list = listOf(3, 3, 3, 1)
 
@@ -52,6 +52,11 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
             if(num != 1) newIP += '.'
         }
 
-        return newIP
+        return if(gameState.ipAddresses.find { newIP == it } == null) {
+            gameState.ipAddresses.add(newIP)
+            newIP
+        }
+        else generateIP(gameState)
+        
     }
 }

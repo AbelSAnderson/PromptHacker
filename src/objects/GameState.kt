@@ -15,6 +15,7 @@ import java.net.URL
 class GameState {
 
     val commands: List<Command> = listOf(Help(), View(), Set(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Rm(), Mv(), Exit())
+    val ipAddresses: MutableList<String> = mutableListOf()
     val error = Error()
 
     var isExit: Boolean = false
@@ -24,10 +25,13 @@ class GameState {
     init {
 
         //Get local IP Address
-        val ipAddress: String = try {
-            BufferedReader(InputStreamReader(URL("http://bot.whatismyipaddress.com").openStream())).readLine().trim()
+        val ipAddress: String
+        ipAddress = try {
+            val tempIpAddress = BufferedReader(InputStreamReader(URL("http://bot.whatismyipaddress.com").openStream())).readLine().trim()
+            ipAddresses.add(tempIpAddress)
+            tempIpAddress
         } catch (e: Exception) {
-            Scan().generateIP()
+            Scan().generateIP(this)
         }
 
         currentComputer = createComputer(ZFile("src/resources/PortHackExe.json"), ipAddress)

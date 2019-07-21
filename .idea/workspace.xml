@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97100041-abf2-4b4d-98e0-4900b616c820" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/Game.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GameState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GameState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/commands/Scan.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/commands/Scan.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,7 +50,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/objects/Error.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
+                <state relative-caret-position="420">
                   <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
                 </state>
               </provider>
@@ -58,8 +59,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/objects/GameState.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+                <state relative-caret-position="540">
+                  <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
                   <folding>
                     <element signature="e#17#272#0" expanded="true" />
                   </folding>
@@ -79,13 +80,25 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/Game.kt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="470">
-                  <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+                <state relative-caret-position="570">
+                  <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
                   <folding>
                     <element signature="e#14#97#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/objects/commands/Scan.kt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="369">
+                  <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#26#149#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -202,20 +215,20 @@
         <option value="$PROJECT_DIR$/src/resources/MarkyBoy.json" />
         <option value="$PROJECT_DIR$/src/objects/SecuritySys.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/Connect.kt" />
-        <option value="$PROJECT_DIR$/src/objects/commands/Scan.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/Login.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/View.kt" />
         <option value="$PROJECT_DIR$/src/objects/Command.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/Rm.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/Cat.kt" />
         <option value="$PROJECT_DIR$/src/resources/PortHackExe.json" />
-        <option value="$PROJECT_DIR$/src/objects/GameState.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/Set.kt" />
         <option value="$PROJECT_DIR$/src/objects/files/Folder.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/Mv.kt" />
         <option value="$PROJECT_DIR$/src/objects/commands/Cd.kt" />
         <option value="$PROJECT_DIR$/src/objects/Error.kt" />
         <option value="$PROJECT_DIR$/src/main/Game.kt" />
+        <option value="$PROJECT_DIR$/src/objects/GameState.kt" />
+        <option value="$PROJECT_DIR$/src/objects/commands/Scan.kt" />
       </list>
     </option>
   </component>
@@ -364,7 +377,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1130064" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1130064" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -374,7 +387,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4989339" weight="0.40628386" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.32502708" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.43445286" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.43878657" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -503,13 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/commands/Scan.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/SecuritySys.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -562,16 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/GameState.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding>
-            <element signature="e#17#272#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -634,17 +630,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/objects/Error.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="420">
           <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Game.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="570">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#14#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/GameState.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+          <folding>
+            <element signature="e#17#272#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objects/commands/Scan.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+          <folding>
+            <element signature="e#26#149#0" expanded="true" />
           </folding>
         </state>
       </provider>
