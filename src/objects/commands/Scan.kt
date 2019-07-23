@@ -41,22 +41,17 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
     //This can create duplicate Ips... not going to worry about that right now.
     fun generateIP(gameState: GameState): String {
         val r = Random()
-        val list = listOf(3, 3, 3, 1)
 
         var newIP = ""
-        var temp: String
 
-        for(num in list) {
-            temp = (r.nextInt(("".padStart(num, '9')).toInt()) + 1).toString()
-            newIP += temp.padStart(num, '0')
-            if(num != 1) newIP += '.'
+        for (i in 1..4) {
+            newIP += r.nextInt(256).toString()
+            if(i != 4) newIP += "."
         }
 
         return if(gameState.ipAddresses.find { newIP == it } == null) {
             gameState.ipAddresses.add(newIP)
             newIP
-        }
-        else generateIP(gameState)
-        
+        } else generateIP(gameState)
     }
 }

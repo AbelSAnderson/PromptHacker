@@ -11,7 +11,7 @@ import java.util.StringTokenizer
 
     Author: Abel Anderson
     Created: 14/06/2019
-    Updated: 08/07/2019
+    Updated: 23/07/2019
 
     Notes: Converted project to Kotlin. Implement Array<any>.isLast(index): Boolean as a function
  */
