@@ -14,13 +14,18 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
         val temp = StringBuilder()
         var ip: String
 
+        //Loops through the computers connected to it.
         for(compName in gameState.currentComputer.connectedComputers) {
+
+            //Loops through computers already created.
             for(comp in gameState.activeComputers) {
+
+                //Checks if the Computer already exists
                 if(compName == comp.compName) {
                     if(temp.isEmpty()) temp.append("Ip(s) found:")
                     temp.append("\n").append("    ").append(comp.ipAddress)
                     break
-                } else if (comp == gameState.activeComputers[gameState.activeComputers.lastIndex]) {
+                } else if (comp == gameState.activeComputers[gameState.activeComputers.lastIndex]) { //If the computer doesn't exist yet, create a new one
                     if(temp.isEmpty()) temp.append("Ip(s) found:")
                     temp.append("\n")
 
@@ -38,7 +43,7 @@ class Scan : Command("scan", "scan: Reveals IP addresses currently connected to 
         return temp.toString()
     }
 
-    //This can create duplicate Ips... not going to worry about that right now.
+    //Duplicate Ips fixed.... Might change this later.
     fun generateIP(gameState: GameState): String {
         val r = Random()
 
