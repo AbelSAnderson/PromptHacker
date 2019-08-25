@@ -1,4 +1,3 @@
 package objects
 
-abstract class File
-(var fileName: String)
+abstract class File(var fileName: String)

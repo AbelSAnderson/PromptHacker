@@ -4,6 +4,7 @@ import objects.commands.*
 import objects.files.*
 
 import org.apache.commons.io.FileUtils
+import org.json.JSONArray
 import org.json.JSONObject
 
 import java.io.BufferedReader
@@ -14,7 +15,7 @@ import java.net.URL
 
 class GameState {
 
-    val commands: List<Command> = listOf(Help(), View(), Set(), Scan(), Connect(), Login(), Ls(), Cat(), Cd(), Rm(), Mv(), Exit())
+    val commands: List<Command> = listOf(Help(), View(), Set(), Ping(), Connect(), Login(), Ls(), Cat(), Cd(), Rm(), Mv(), Exit())
     val ipAddresses: MutableList<String> = mutableListOf()
     val error = Error()
 
@@ -31,7 +32,7 @@ class GameState {
             ipAddresses.add(tempIpAddress)
             tempIpAddress
         } catch (e: Exception) {
-            Scan().generateIP(this)
+            Ping().generateIP(this)
         }
 
         currentComputer = createComputer(ZFile("src/resources/PortHackExe.json"), ipAddress)
@@ -39,6 +40,8 @@ class GameState {
     }
 
     //Methods
+
+    //Create a new Computer based off of a Json File
     fun createComputer(jsonFile: ZFile, ipAddress: String): Computer {
 
         val content: String = try {
@@ -109,10 +112,23 @@ class GameState {
     }
 
     private fun createSecurity(info: JSONObject): SecuritySys {
+        val ports = createPorts(info.getJSONArray("Ports"))
         val password = info.getString("Password")
         val hint = info.getString("Hint")
         val unlocked = password.isNotEmpty()
 
-        return SecuritySys(password, hint, unlocked)
+        return SecuritySys(ports, password, hint, unlocked)
+    }
+
+    private fun createPorts(portList: JSONArray): Array<Port> {
+        val masterPortList: HashMap<Int, String> = hashMapOf(22 to "SSH", 80 to "HTTP")
+        val finishedList: MutableList<Port> = mutableListOf()
+
+        for(port in portList) {
+            val temp = port.toString().toInt()
+            finishedList.add(Port(masterPortList.getValue(temp), temp))
+        }
+
+        return finishedList.toTypedArray()
     }
 }

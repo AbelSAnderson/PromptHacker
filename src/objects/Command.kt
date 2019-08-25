@@ -2,8 +2,7 @@ package objects
 
 import java.util.*
 
-abstract class Command
-(var name: String, var description: String, var isLocked: Boolean) {
+abstract class Command(var name: String, var description: String, var isLocked: Boolean) {
 
     //Methods
     open fun execute(gameState: GameState): String {

@@ -2,7 +2,11 @@
   "Name": "MarkyBoy",
   "Security": {
     "Password" : "Test",
-    "Hint" : "TTTTTTTest"
+    "Hint" : "TTTTTTTest",
+    "Ports" : [
+      80,
+      22
+    ]
   },
   "ConnectedComputers": [
     "PortHackExe"

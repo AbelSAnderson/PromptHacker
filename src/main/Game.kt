@@ -37,7 +37,7 @@ object Game {
     //Searches commands for user entered Command
     private fun commandHandler(userCommands: String): String {
 
-        if(userCommands.isEmpty()) return gameState.error.notFound(userCommands, gameState.error.defaultMessage)
+        if (userCommands.isEmpty()) return gameState.error.notFound(userCommands, gameState.error.defaultMessage)
 
         val tokenizer = StringTokenizer(userCommands)
         val userCommand = tokenizer.nextToken()
