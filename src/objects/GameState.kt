@@ -14,8 +14,7 @@ import java.io.InputStreamReader
 import java.net.URL
 
 class GameState {
-
-    val commands: List<Command> = listOf(Help(), View(), Set(), Ping(), Connect(), Login(), Ls(), Cat(), Cd(), Rm(), Mv(), Exit())
+    val commands: List<Command> = listOf(Help(), Get(), Set(), Ping(), Connect(), Login(), Scan(), Ls(), Cat(), Cd(), Rm(), Mv(), Exit())
     val ipAddresses: MutableList<String> = mutableListOf()
     val error = Error()
 
@@ -24,7 +23,6 @@ class GameState {
     var currentComputer: Computer
 
     init {
-
         //Get local IP Address
         val ipAddress: String
         ipAddress = try {
@@ -43,11 +41,10 @@ class GameState {
 
     //Create a new Computer based off of a Json File
     fun createComputer(jsonFile: ZFile, ipAddress: String): Computer {
-
         val content: String = try {
             FileUtils.readFileToString(jsonFile, "utf-8")
         } catch (e: IOException) {
-            ""
+            e.printStackTrace().toString()
         }
 
         val computer = JSONObject(content)
@@ -70,11 +67,24 @@ class GameState {
         val files = createFolder(computer.getJSONObject("Files"))
         files.setParents(null)
 
+        //Emails
+        val emails = createEmails(computer.getJSONArray("Emails"))
+
         //Create & Return Completed Computer
-        return Computer(compName, security, ipAddress, connectedComputersFiles, files)
+        return Computer(compName, security, ipAddress, connectedComputersFiles, files, files, emails)
     }
 
-    private fun createEmail(email: JSONObject): File {
+    private fun createEmails(emails: JSONArray): Array<Email> {
+        val emailList = mutableListOf<Email>()
+
+        for (email in emails) {
+            emailList.add(createEmail(email as JSONObject))
+        }
+
+        return emailList.toTypedArray()
+    }
+
+    private fun createEmail(email: JSONObject): Email {
         val fileName = email.getString("Name")
         val from = email.getString("From")
         val to = email.getString("To")
@@ -103,7 +113,6 @@ class GameState {
 
             when (file.getString("Type")) {
                 "text" -> tempFolder.add(createFile(file))
-                "email" -> tempFolder.add(createEmail(file))
                 "folder" -> tempFolder.add(createFolder(file))
             }
         }
@@ -124,7 +133,7 @@ class GameState {
         val masterPortList: HashMap<Int, String> = hashMapOf(22 to "SSH", 80 to "HTTP")
         val finishedList: MutableList<Port> = mutableListOf()
 
-        for(port in portList) {
+        for (port in portList) {
             val temp = port.toString().toInt()
             finishedList.add(Port(masterPortList.getValue(temp), temp))
         }

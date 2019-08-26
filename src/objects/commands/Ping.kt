@@ -15,18 +15,18 @@ class Ping : Command("ping", "ping: Reveals IP addresses currently connected to 
         var ip: String
 
         //Loops through the computers connected to it.
-        for(compName in gameState.currentComputer.connectedComputers) {
+        for (compName in gameState.currentComputer.connectedComputers) {
 
             //Loops through computers already created.
-            for(comp in gameState.activeComputers) {
+            for (comp in gameState.activeComputers) {
 
                 //Checks if the Computer already exists
-                if(compName == comp.compName) {
-                    if(temp.isEmpty()) temp.append("Ip(s) found:")
+                if (compName == comp.compName) {
+                    if (temp.isEmpty()) temp.append("Ip(s) found:")
                     temp.append("\n").append("    ").append(comp.ipAddress)
                     break
                 } else if (comp == gameState.activeComputers[gameState.activeComputers.lastIndex]) { //If the computer doesn't exist yet, create a new one
-                    if(temp.isEmpty()) temp.append("Ip(s) found:")
+                    if (temp.isEmpty()) temp.append("Ip(s) found:")
                     temp.append("\n")
 
                     ip = generateIP(gameState)
@@ -38,7 +38,7 @@ class Ping : Command("ping", "ping: Reveals IP addresses currently connected to 
             }
         }
 
-        if(temp.isEmpty()) temp.append(gameState.error.noComputers())
+        if (temp.isEmpty()) temp.append(gameState.error.noObjectsFound("computers"))
 
         return temp.toString()
     }
@@ -51,10 +51,10 @@ class Ping : Command("ping", "ping: Reveals IP addresses currently connected to 
 
         for (i in 1..4) {
             newIP += r.nextInt(256).toString()
-            if(i != 4) newIP += "."
+            if (i != 4) newIP += "."
         }
 
-        return if(gameState.ipAddresses.find { newIP == it } == null) {
+        return if (gameState.ipAddresses.find { newIP == it } == null) {
             gameState.ipAddresses.add(newIP)
             newIP
         } else generateIP(gameState)

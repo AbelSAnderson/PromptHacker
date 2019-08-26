@@ -23,7 +23,7 @@ class Set : Command("set", "set name/pass/hint [newValue]: Sets the desired valu
                     gameState.currentComputer.security.hint = userCommands.nextToken()
                     "Computer Password Hint is now ${gameState.currentComputer.security.hint}"
                 }
-               else -> gameState.error.notFound(valueName)
+               else -> gameState.error.objectNotFound(valueName)
             }
         } else {
             return gameState.error.invalidUse(name, userCommands)

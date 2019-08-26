@@ -25,7 +25,7 @@ class Error {
         return "'$commandName ${temp.trim()}' is not a valid use of '$commandName'."
     }
 
-    fun notFound(objectName: String, reason: String = "", quotes: Boolean = true): String {
+    fun objectNotFound(objectName: String, reason: String = "", quotes: Boolean = true): String {
         var message = if(quotes) "'$objectName'"
         else objectName
 
@@ -36,19 +36,16 @@ class Error {
         return message
     }
 
+    fun noObjectsFound(objectName: String): String {
+        return "No $objectName found."
+    }
+
     fun isNot(name: String, message: String): String {
         return "'$name' is not $message."
     }
 
-    fun loggedIn(): String {
-        return "You are already logged in."
-    }
-
-    fun notLoggedIn(): String {
-        return "Log into computer to access that command."
-    }
-
-    fun noComputers(): String {
-        return "No computers found."
+    fun loggedIn(loggedIn: Boolean): String {
+        return if(loggedIn) "You are already logged in."
+        else "Log into the computer to access that command."
     }
 }

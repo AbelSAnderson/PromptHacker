@@ -37,7 +37,7 @@ object Game {
     //Searches commands for user entered Command
     private fun commandHandler(userCommands: String): String {
 
-        if (userCommands.isEmpty()) return gameState.error.notFound(userCommands, gameState.error.defaultMessage)
+        if (userCommands.isEmpty()) return gameState.error.objectNotFound(userCommands, gameState.error.defaultMessage)
 
         val tokenizer = StringTokenizer(userCommands)
         val userCommand = tokenizer.nextToken()
@@ -45,7 +45,7 @@ object Game {
         for (command in gameState.commands) {
             if (userCommand.toLowerCase().trim { it <= ' ' } == command.name) {
                 return if (gameState.currentComputer.security.isLocked && command.isLocked) {
-                    gameState.error.notLoggedIn()
+                    gameState.error.loggedIn(false)
                 } else if (!tokenizer.hasMoreTokens()) {
                     command.execute(gameState)
                 } else if (tokenizer.countTokens() < 2) {
@@ -56,6 +56,6 @@ object Game {
             }
         }
 
-        return gameState.error.notFound(userCommand, gameState.error.defaultMessage)
+        return gameState.error.objectNotFound(userCommand, gameState.error.defaultMessage)
     }
 }
