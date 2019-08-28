@@ -1,12 +1,12 @@
 {
-  "Name": "PortHackExe",
+  "Name": "root",
   "Security": {
     "Password" : "",
     "Hint" : "",
     "Ports" : []
   },
   "ConnectedComputers": [
-    "MarkyBoy"
+    "MarkBrowning"
   ],
   "Files": {
     "Type": "folder",

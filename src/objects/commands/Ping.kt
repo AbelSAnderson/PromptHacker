@@ -10,7 +10,6 @@ import java.util.Random
 class Ping : Command("ping", "ping: Reveals IP addresses currently connected to your network.", false) {
 
     override fun execute(gameState: GameState): String {
-
         val temp = StringBuilder()
         var ip: String
 
@@ -23,7 +22,11 @@ class Ping : Command("ping", "ping: Reveals IP addresses currently connected to 
                 //Checks if the Computer already exists
                 if (compName == comp.compName) {
                     if (temp.isEmpty()) temp.append("Ip(s) found:")
-                    temp.append("\n").append("    ").append(comp.ipAddress)
+                    temp.append("\n    ")
+
+                    if (comp.security.isLocked) temp.append(comp.ipAddress)
+                    else temp.append(comp.compName + " (${comp.ipAddress})")
+
                     break
                 } else if (comp == gameState.activeComputers[gameState.activeComputers.lastIndex]) { //If the computer doesn't exist yet, create a new one
                     if (temp.isEmpty()) temp.append("Ip(s) found:")
@@ -32,7 +35,7 @@ class Ping : Command("ping", "ping: Reveals IP addresses currently connected to 
                     ip = generateIP(gameState)
                     gameState.activeComputers.add(gameState.createComputer(File("src/resources/$compName.json"), ip))
 
-                    temp.append("    ").append(ip)
+                    temp.append("    $ip")
                     break
                 }
             }

@@ -1,5 +1,5 @@
 {
-  "Name": "MarkyBoy",
+  "Name": "MarkBrowning",
   "Security": {
     "Password" : "Test",
     "Hint" : "TTTTTTTest",
@@ -9,7 +9,7 @@
     ]
   },
   "ConnectedComputers": [
-    "PortHackExe"
+    "Root"
   ],
   "Files": {
     "Type": "file",

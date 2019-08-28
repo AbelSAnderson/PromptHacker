@@ -12,6 +12,7 @@ class Connect : Command("connect", "connect [IpAddress]: Connect to a different 
 
                 var temp = "Connected to $userCommand."
                 if (gameState.currentComputer.security.isLocked) temp += "\nPlease enter password."
+                else gameState.currentComputer.security.isLocked = false
 
                 return temp
             }

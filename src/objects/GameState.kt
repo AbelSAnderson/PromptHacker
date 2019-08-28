@@ -33,7 +33,8 @@ class GameState {
             Ping().generateIP(this)
         }
 
-        currentComputer = createComputer(ZFile("src/resources/PortHackExe.json"), ipAddress)
+        currentComputer = createComputer(ZFile("src/resources/Root.json"), ipAddress)
+        currentComputer.security.isLocked = false
         activeComputers.add(currentComputer)
     }
 
@@ -124,9 +125,8 @@ class GameState {
         val ports = createPorts(info.getJSONArray("Ports"))
         val password = info.getString("Password")
         val hint = info.getString("Hint")
-        val unlocked = password.isNotEmpty()
 
-        return SecuritySys(ports, password, hint, unlocked)
+        return SecuritySys(ports, password, hint)
     }
 
     private fun createPorts(portList: JSONArray): Array<Port> {
