@@ -1,6 +1,7 @@
 package objects.commands
 
 import objects.Command
+import objects.Computer
 import objects.GameState
 import java.io.File
 import java.lang.StringBuilder
@@ -12,32 +13,30 @@ class Ping : Command("ping", "ping: Reveals IP addresses currently connected to 
     override fun execute(gameState: GameState): String {
         val temp = StringBuilder()
         var ip: String
+        var newComp: Computer
 
-        //Loops through the computers connected to it.
-        for (compName in gameState.currentComputer.connectedComputers) {
+        if (gameState.currentComputer.connectedComputers.isNotEmpty()) {
+            gameState.currentComputer.connectedComputers.forEach {
+                if (temp.isEmpty()) temp.append("Ip(s) found:")
+                temp.append("\n    ")
 
-            //Loops through computers already created.
-            for (comp in gameState.activeComputers) {
+                if (it.security.isLocked) temp.append(it.ipAddress)
+                else temp.append(it.compName + " (${it.ipAddress})")
+            }
+        }
 
-                //Checks if the Computer already exists
-                if (compName == comp.compName) {
-                    if (temp.isEmpty()) temp.append("Ip(s) found:")
-                    temp.append("\n    ")
+        if (gameState.currentComputer.connectedCompNames.isNotEmpty()) {
+            for (i in gameState.currentComputer.connectedCompNames.size - 1 downTo 0) {
+                if (temp.isEmpty()) temp.append("Ip(s) found:")
 
-                    if (comp.security.isLocked) temp.append(comp.ipAddress)
-                    else temp.append(comp.compName + " (${comp.ipAddress})")
+                ip = generateIP(gameState)
+                newComp = gameState.createComputer(File("src/resources/${gameState.currentComputer.connectedCompNames[i]}.json"), ip)
+                newComp.connectedComputers.add(gameState.currentComputer)
+                gameState.currentComputer.connectedComputers.add(newComp)
 
-                    break
-                } else if (comp == gameState.activeComputers[gameState.activeComputers.lastIndex]) { //If the computer doesn't exist yet, create a new one
-                    if (temp.isEmpty()) temp.append("Ip(s) found:")
-                    temp.append("\n")
+                temp.append("\n    $ip")
 
-                    ip = generateIP(gameState)
-                    gameState.activeComputers.add(gameState.createComputer(File("src/resources/$compName.json"), ip))
-
-                    temp.append("    $ip")
-                    break
-                }
+                gameState.currentComputer.connectedCompNames.removeAt(i)
             }
         }
 

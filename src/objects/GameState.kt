@@ -35,7 +35,6 @@ class GameState {
 
         currentComputer = createComputer(ZFile("src/resources/Root.json"), ipAddress)
         currentComputer.security.isLocked = false
-        activeComputers.add(currentComputer)
     }
 
     //Methods
@@ -58,10 +57,10 @@ class GameState {
 
         //Connected Computers
         val connectedComps = computer.getJSONArray("ConnectedComputers")
-        val connectedComputersFiles = arrayOfNulls<String>(connectedComps.length())
+        val connectedComputersFiles = mutableListOf<String>()
 
         for (i in 0 until connectedComps.length()) {
-            connectedComputersFiles[i] = connectedComps.getString(i)
+            connectedComputersFiles.add(connectedComps.getString(i))
         }
 
         //Files
@@ -71,8 +70,11 @@ class GameState {
         //Emails
         val emails = createEmails(computer.getJSONArray("Emails"))
 
+        val newComputer = Computer(compName, security, ipAddress, connectedComputersFiles, mutableListOf(), files, files, emails)
+        activeComputers.add(newComputer)
+
         //Create & Return Completed Computer
-        return Computer(compName, security, ipAddress, connectedComputersFiles, files, files, emails)
+        return newComputer
     }
 
     private fun createEmails(emails: JSONArray): Array<Email> {

@@ -12,10 +12,10 @@ class Ls : Command("ls", "ls: Lists files on the Computer you're currently using
 
         val files = gameState.currentComputer.currentFolder
 
-        output.append(files.fileName).append("/")
+        output.append(files.fileName + "/")
 
         for (file in files.content) {
-            output.append("\n    ").append(file.fileName)
+            output.append("\n    " + file.fileName)
 
             if (file is Folder) output.append("/")
         }

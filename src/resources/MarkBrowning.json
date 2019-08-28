@@ -8,9 +8,7 @@
       22
     ]
   },
-  "ConnectedComputers": [
-    "Root"
-  ],
+  "ConnectedComputers": [],
   "Files": {
     "Type": "file",
     "Name": "Documents",

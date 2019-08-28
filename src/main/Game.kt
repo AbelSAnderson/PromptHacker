@@ -40,10 +40,10 @@ object Game {
         if (userCommands.isEmpty()) return gameState.error.objectNotFound(userCommands, gameState.error.defaultMessage)
 
         val tokenizer = StringTokenizer(userCommands)
-        val userCommand = tokenizer.nextToken()
+        val userCommand = tokenizer.nextToken().toLowerCase().trim { it <= ' ' }
 
         for (command in gameState.commands) {
-            if (userCommand.toLowerCase().trim { it <= ' ' } == command.name) {
+            if (userCommand == command.name) {
                 return if (gameState.currentComputer.security.isLocked && command.isLocked) {
                     gameState.error.loggedIn(false)
                 } else if (!tokenizer.hasMoreTokens()) {
