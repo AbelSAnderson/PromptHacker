@@ -26,19 +26,19 @@ class Ping : Command("ping", "ping: Reveals IP addresses currently connected to 
         }
 
         if (gameState.currentComputer.connectedCompNames.isNotEmpty()) {
-            for (i in gameState.currentComputer.connectedCompNames.size - 1 downTo 0) {
+            gameState.currentComputer.connectedCompNames.forEach {
                 if (temp.isEmpty()) temp.append("Ip(s) found:")
 
                 ip = generateIP(gameState)
-                newComp = gameState.createComputer(File("src/resources/${gameState.currentComputer.connectedCompNames[i]}.json"), ip)
+                newComp = gameState.createComputer(File("src/resources/${it}.json"), ip)
                 newComp.connectedComputers.add(gameState.currentComputer)
                 gameState.currentComputer.connectedComputers.add(newComp)
 
                 temp.append("\n    $ip")
-
-                gameState.currentComputer.connectedCompNames.removeAt(i)
             }
         }
+
+        gameState.currentComputer.connectedCompNames = emptyArray()
 
         if (temp.isEmpty()) temp.append(gameState.error.noObjectsFound("computers"))
 

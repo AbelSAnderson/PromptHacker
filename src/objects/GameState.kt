@@ -14,7 +14,7 @@ import java.io.InputStreamReader
 import java.net.URL
 
 class GameState {
-    val commands: List<Command> = listOf(Help(), Get(), Set(), Ping(), Connect(), Login(), Scan(), Ls(), Cat(), Cd(), Rm(), Mv(), Exit())
+    val commands: List<Command> = listOf(Help(), Get(), Set(), Ping(), Connect(), Login(), Scan(), Ls(), Cat(), Cd(), Rm(), Mv(), Transfer(), Exit())
     val ipAddresses: MutableList<String> = mutableListOf()
     val error = Error()
 
@@ -70,7 +70,7 @@ class GameState {
         //Emails
         val emails = createEmails(computer.getJSONArray("Emails"))
 
-        val newComputer = Computer(compName, security, ipAddress, connectedComputersFiles, mutableListOf(), files, files, emails)
+        val newComputer = Computer(compName, security, ipAddress, connectedComputersFiles.toTypedArray(), mutableListOf(), files, files, emails)
         activeComputers.add(newComputer)
 
         //Create & Return Completed Computer
