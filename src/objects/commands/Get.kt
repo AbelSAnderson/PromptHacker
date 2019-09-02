@@ -4,7 +4,7 @@ import objects.Command
 import objects.Error
 import objects.GameState
 
-class Get : Command("get", "get ip/name/pass/hint: View a piece of information about your current computer", false) {
+class Get : Command("get", "get ip/name/pass: View a piece of information about your current computer", false) {
 
     override fun execute(gameState: GameState, userCommand: String): String {
 
@@ -12,7 +12,6 @@ class Get : Command("get", "get ip/name/pass/hint: View a piece of information a
             "name" -> messageCreator("Name", gameState.currentComputer.compName)
             "ip" -> messageCreator("Ip Address", gameState.currentComputer.ipAddress)
             "pass" -> messageCreator("Password", gameState.currentComputer.security.password)
-            "hint" -> messageCreator("Password Hint", gameState.currentComputer.security.hint)
             else -> gameState.error.objectNotFound(userCommand)
         }
     }
