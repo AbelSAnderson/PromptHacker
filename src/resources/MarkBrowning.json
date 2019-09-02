@@ -2,7 +2,6 @@
   "Name": "MarkBrowning",
   "Security": {
     "Password" : "Test",
-    "Hint" : "TTTTTTTest",
     "Ports" : [
       80,
       22

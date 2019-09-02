@@ -126,9 +126,8 @@ class GameState {
     private fun createSecurity(info: JSONObject): SecuritySys {
         val ports = createPorts(info.getJSONArray("Ports"))
         val password = info.getString("Password")
-        val hint = info.getString("Hint")
 
-        return SecuritySys(ports, password, hint)
+        return SecuritySys(ports, password)
     }
 
     private fun createPorts(portList: JSONArray): Array<Port> {

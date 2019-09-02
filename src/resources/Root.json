@@ -2,7 +2,6 @@
   "Name": "Root",
   "Security": {
     "Password" : "",
-    "Hint" : "",
     "Ports" : []
   },
   "ConnectedComputers": [
