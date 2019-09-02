@@ -1,14 +1,8 @@
 package objects
 
-import objects.commands.computerCommands.Get
-import objects.commands.computerCommands.Login
-import objects.commands.computerCommands.Ping
-import objects.commands.computerCommands.Scan
-import objects.commands.computerCommands.Set
+import objects.commands.computerCommands.*
 import objects.commands.fileCommands.*
-import objects.commands.globalCommands.Connect
-import objects.commands.globalCommands.Exit
-import objects.commands.globalCommands.Help
+import objects.commands.globalCommands.*
 import objects.files.*
 
 import org.apache.commons.io.FileUtils

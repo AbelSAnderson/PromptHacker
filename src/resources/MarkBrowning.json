@@ -3,8 +3,8 @@
   "Security": {
     "Password" : "Test",
     "Ports" : [
-      80,
-      22
+      22,
+      80
     ]
   },
   "ConnectedComputers": [],
