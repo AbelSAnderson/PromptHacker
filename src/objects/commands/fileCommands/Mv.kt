@@ -1,4 +1,4 @@
-package objects.commands
+package objects.commands.fileCommands
 
 import objects.Command
 import objects.GameState

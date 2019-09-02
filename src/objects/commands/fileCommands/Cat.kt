@@ -1,4 +1,4 @@
-package objects.commands
+package objects.commands.fileCommands
 
 import objects.files.Email
 import objects.files.Folder

@@ -1,4 +1,4 @@
-package objects.commands
+package objects.commands.computerCommands
 
 import objects.Command
 import objects.Error
