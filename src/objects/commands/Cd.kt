@@ -17,7 +17,7 @@ class Cd : Command("cd", "cd [folderName]: Navigate to a specified folder.\ncd .
 
             currentFolder = when (token) {
                 ".." -> currentFolder.parentFolder ?: currentFolder
-                else -> (currentFolder.findFile(token) ?: return gameState.error.objectNotFound(token)) as? Folder ?: return gameState.error.isNot(token, "a folder")
+                else -> (currentFolder.getFile(token) ?: return gameState.error.objectNotFound(token)) as? Folder ?: return gameState.error.isNot(token, "a folder")
             }
         }
 

@@ -11,23 +11,16 @@ class Mv : Command("mv", "mv [fileName] [newLocation]: Moves the selected file t
 
         return if(userCommands.countTokens() == 2) {
 
+            //Check if the file exists
             val fileName = userCommands.nextToken()
-            val temp = gameState.currentComputer.currentFolder.findFile(fileName) ?: return gameState.error.objectNotFound(fileName)
+            val temp = gameState.currentComputer.currentFolder.getFile(fileName) ?: return gameState.error.objectNotFound(fileName)
+
+            //Check if the file path is correct
             val filePath = userCommands.nextToken()
-            val tokenizer = StringTokenizer(filePath, "/")
+            val result = gameState.currentComputer.currentFolder.findFolder(gameState, filePath)
+            val currentFolder : Folder = result.first ?: return result.second
 
-            var currentFolder = gameState.currentComputer.currentFolder
-            var token: String
-
-            while (tokenizer.hasMoreTokens()) {
-                token = tokenizer.nextToken()
-
-                currentFolder = when (token) {
-                    ".." -> currentFolder.parentFolder ?: currentFolder
-                    else -> (currentFolder.findFile(token) ?: return gameState.error.objectNotFound(token)) as? Folder ?: return gameState.error.isNot(token, "a folder")
-                }
-            }
-
+            //Move the file to its destination
             gameState.currentComputer.currentFolder.content.remove(temp)
             gameState.currentComputer.currentFolder = currentFolder
             gameState.currentComputer.currentFolder.content.add(temp)

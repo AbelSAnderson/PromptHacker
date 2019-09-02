@@ -40,7 +40,7 @@ object Game {
         if (userCommands.isEmpty()) return gameState.error.objectNotFound(userCommands, gameState.error.defaultMessage)
 
         val tokenizer = StringTokenizer(userCommands)
-        val userCommand = tokenizer.nextToken().toLowerCase().trim { it <= ' ' }
+        val userCommand = tokenizer.nextToken().toLowerCase().trim()
 
         for (command in gameState.commands) {
             if (userCommand == command.name) {

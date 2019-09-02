@@ -14,7 +14,7 @@ class Cat : Command("cat", "Cat [filename]: Display the contents of a file.", tr
 
         if(files.content.isEmpty()) return gameState.error.objectNotFound(userCommand, "\nFolder is empty")
 
-        return when (val file = files.findFile(userCommand)) {
+        return when (val file = files.getFile(userCommand)) {
             is Email -> file.from + "\n" + file.to + "\n" + file.sent + "\n" + file.subject + "\n" + file.content
             is TextFile -> file.content
             is Folder -> gameState.error.invalidUse("cat", userCommand)
