@@ -44,8 +44,8 @@ class Error {
         return "'$name' is not $message."
     }
 
-    fun loggedIn(loggedIn: Boolean): String {
+    fun loggedIn(loggedIn: Boolean, computer: String = "this computer"): String {
         return if(loggedIn) "You are already logged in."
-        else "Log into the computer to access that command."
+        else "Log into $computer to use that command."
     }
 }

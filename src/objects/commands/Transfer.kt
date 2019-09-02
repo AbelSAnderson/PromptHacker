@@ -2,10 +2,9 @@ package objects.commands
 
 import objects.Command
 import objects.GameState
-import objects.files.Folder
 import java.util.*
 
-class Transfer : Command("transfer", "transfer [fileName] [computer?] [folderPath?]: Transfers a file to your home computer. You can also specify a different computer and an exact file path.", true) {
+class Transfer : Command("transfer", "transfer [fileName] [computer?]: Transfers a file to your home computer. You can also specify a different computer", true) {
     override fun execute(gameState: GameState, userCommand: String): String {
         val tempFile = gameState.currentComputer.currentFolder.getFile(userCommand)
                 ?: return gameState.error.objectNotFound(userCommand)
@@ -17,54 +16,23 @@ class Transfer : Command("transfer", "transfer [fileName] [computer?] [folderPat
     }
 
     override fun execute(gameState: GameState, userCommands: StringTokenizer): String {
-
-        if (userCommands.countTokens() < 4) {
-            //Find File
+        if (userCommands.countTokens() < 3) {
+            //Find the File
             val fileName = userCommands.nextToken()
             val tempFile = gameState.currentComputer.currentFolder.getFile(fileName)
                     ?: return gameState.error.objectNotFound(fileName)
 
-            val computerId: String
-            val filePath: String
+            //Find the computer
+            val computerId: String = userCommands.nextToken()
+            val computerLocation = gameState.activeComputers.find { it.compName == computerId || it.ipAddress == computerId }
+                    ?: return gameState.error.objectNotFound(computerId)
+            if(computerLocation.security.isLocked) return gameState.error.loggedIn(false, computerId)
 
-            if (userCommands.countTokens() == 2) {
-                //Find the computer
-                computerId = userCommands.nextToken()
-                val computerLocation = gameState.activeComputers.find { it.compName == computerId || it.ipAddress == computerId }
-                        ?: return gameState.error.objectNotFound(computerId)
+            //Remove the original File and Replace it in the destination
+            gameState.currentComputer.currentFolder.content.remove(tempFile)
+            computerLocation.rootFolder.content.add(tempFile)
 
-                //Locate the File Destination
-                filePath = userCommands.nextToken()
-                val result = computerLocation.rootFolder.findFolder(gameState, filePath)
-                val folderLocation: Folder = result.first ?: return result.second
-
-                //Remove the original File and Replace it in the destination
-                gameState.currentComputer.currentFolder.content.remove(tempFile)
-                folderLocation.content.add(tempFile)
-            } else {
-                filePath = userCommands.nextToken()
-
-                //Check if the next command referred to a computer
-                if (StringTokenizer(filePath, "/").countTokens() == 1) {
-                    val computer = gameState.activeComputers.find { it.compName == filePath || it.ipAddress == filePath }
-                    if (computer != null) {
-                        gameState.currentComputer.currentFolder.content.remove(tempFile)
-                        computer.rootFolder.content.add(tempFile)
-                        return "$fileName has been successfully transferred to $filePath"
-                    }
-                }
-
-                //Locate the File Destination
-                val result = gameState.activeComputers[0].rootFolder.findFolder(gameState, filePath)
-                val folderLocation: Folder = result.first ?: return result.second
-
-                //Remove the original File and Replace it in the destination
-                gameState.currentComputer.currentFolder.content.remove(tempFile)
-                folderLocation.content.add(tempFile)
-
-                computerId = gameState.activeComputers[0].compName
-            }
-            return "$fileName has been successfully transferred to $computerId::/$filePath"
+            return "$fileName has been successfully transferred to $computerId."
 
         } else return gameState.error.invalidUse(name, userCommands)
     }
