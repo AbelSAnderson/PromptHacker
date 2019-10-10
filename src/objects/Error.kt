@@ -40,8 +40,9 @@ class Error {
         return "No $objectName found."
     }
 
-    fun isNot(name: String, message: String): String {
-        return "'$name' is not $message."
+    fun isNot(name: String, message: String, quotes: Boolean = true): String {
+        return if(quotes) "'$name' is not $message."
+        else "$name is not $message."
     }
 
     fun loggedIn(loggedIn: Boolean, computer: String = "this computer"): String {

@@ -17,6 +17,7 @@ import java.net.URL
 
 class GameState {
     val commands: List<Command> = listOf(Help(), Get(), Set(), Ping(), Connect(), Login(), Scan(), Ls(), Cat(), Cd(), Rm(), Mv(), Transfer(), Exit())
+    val masterPortList: HashMap<Int, String> = hashMapOf(22 to "SSH", 80 to "HTTP")
     val ipAddresses: MutableList<String> = mutableListOf()
     val error = Error()
 
@@ -133,7 +134,6 @@ class GameState {
     }
 
     private fun createPorts(portList: JSONArray): Array<Port> {
-        val masterPortList: HashMap<Int, String> = hashMapOf(22 to "SSH", 80 to "HTTP")
         val finishedList: MutableList<Port> = mutableListOf()
 
         for (port in portList) {
